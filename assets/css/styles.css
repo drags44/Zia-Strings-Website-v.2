@@ -1,0 +1,17 @@
+/* styles.css */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Product cards */
+.product-card {
+    transition: transform 0.2s ease;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Chatbot styles */
+#chatbot {
+    z-index: 1000;
+}
