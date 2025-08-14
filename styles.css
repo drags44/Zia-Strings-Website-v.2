@@ -1,0 +1,155 @@
+/* Custom CSS for Zia Strings Website */
+
+/* Hero Background */
+.hero-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Product Card Hover Effects */
+.thobe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Active Tab Styling */
+.active-tab {
+    border-bottom: 3px solid #8B5A2B;
+    font-weight: 600;
+}
+
+/* Mobile Menu Styles */
+.mobile-menu {
+    background-color: #92400e;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu a {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* FAQ Accordion Styles */
+.faq-question {
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.faq-question:hover {
+    background-color: #f3f4f6;
+}
+
+.faq-answer {
+    transition: all 0.3s ease;
+}
+
+/* Chatbot Styles */
+#chatbot-container {
+    z-index: 1000;
+}
+
+#chatbot-button {
+    transition: transform 0.3s ease;
+}
+
+#chatbot-button:hover {
+    transform: scale(1.1);
+}
+
+#chatbot-window {
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Form Input Focus States */
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #92400e;
+    box-shadow: 0 0 0 3px rgba(146, 64, 14, 0.1);
+}
+
+/* Button Hover Effects */
+.bg-amber-800:hover {
+    background-color: #78350f;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+    .hero-bg {
+        background-position: center center;
+    }
+    
+    .thobe-card:hover {
+        transform: none;
+    }
+    
+    #chatbot-window {
+        width: 90vw;
+        right: 5vw;
+    }
+}
+
+/* Smooth Transitions */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Custom Scrollbar for Chatbot */
+#chatbot-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+#chatbot-messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+#chatbot-messages::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+#chatbot-messages::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Success/Error Message Styles */
+.message-success {
+    background-color: #d1fae5;
+    border-color: #10b981;
+    color: #065f46;
+}
+
+.message-error {
+    background-color: #fee2e2;
+    border-color: #ef4444;
+    color: #991b1b;
+}
+
+/* Print Styles */
+@media print {
+    .chatbot-container,
+    .mobile-menu-button,
+    .bg-amber-800 {
+        display: none !important;
+    }
+}

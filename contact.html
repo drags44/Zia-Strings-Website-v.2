@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Zia Strings - Get in touch for questions, orders, or support. We're here to help with all your thobe needs.">
+    <title>Contact Us - Zia Strings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <a href="index.html" class="flex items-center py-4 px-2">
+                            <span class="font-semibold text-gray-900 text-2xl">Zia Strings</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="index.html" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">Home</a>
+                    <a href="products.html" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">Products</a>
+                    <a href="about.html" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">About</a>
+                    <a href="contact.html" class="py-4 px-2 text-gray-900 border-b-4 border-brown-500 font-semibold active-tab">Contact</a>
+                    <a href="#" class="py-2 px-4 bg-amber-800 text-white rounded hover:bg-amber-900 transition duration-300 flex items-center">
+                        <i class="fas fa-shopping-cart mr-2"></i> Cart
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="hidden mobile-menu">
+            <ul>
+                <li><a href="index.html" class="block text-sm px-2 py-4 hover:bg-amber-800 hover:text-white transition duration-300">Home</a></li>
+                <li><a href="products.html" class="block text-sm px-2 py-4 hover:bg-amber-800 hover:text-white transition duration-300">Products</a></li>
+                <li><a href="about.html" class="block text-sm px-2 py-4 hover:bg-amber-800 hover:text-white transition duration-300">About</a></li>
+                <li><a href="contact.html" class="block text-sm px-2 py-4 text-white bg-amber-800 font-semibold">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-amber-800 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
+            <p class="text-xl">Get in touch with our team</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Get in Touch</h3>
+                    <p class="text-gray-600 mb-6">
+                        Have questions about our products or need assistance with your order? Our customer service team is here to help.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-phone-alt text-amber-800 mr-3"></i>
+                            <span class="text-gray-700">945 236 9499</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-amber-800 mr-3"></i>
+                            <span class="text-gray-700">info@ziastrings.com</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-3">Business Hours</h4>
+                        <p class="text-gray-600 mb-2">Sunday - Thursday: 9:00 AM - 6:00 PM</p>
+                        <p class="text-gray-600">Friday: Closed</p>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <form class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
+                            <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-800" id="name" type="text" placeholder="Your Name">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+                            <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-800" id="email" type="email" placeholder="Your Email">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="subject">Subject</label>
+                            <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-800" id="subject" type="text" placeholder="Subject">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Message</label>
+                            <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-800" id="message" rows="4" placeholder="Your Message"></textarea>
+                        </div>
+                        <button class="w-full bg-amber-800 hover:bg-amber-900 text-white font-bold py-2 px-4 rounded transition duration-300" type="button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">Zia Strings</h3>
+                    <p class="text-gray-400">Premium quality thobes for the modern Muslim man.</p>
+                </div>
+                
+                <div class="mb-6 md:mb-0">
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul>
+                        <li class="mb-2"><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li class="mb-2"><a href="products.html" class="text-gray-400 hover:text-white transition duration-300">Products</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-gray-400 hover:text-white transition duration-300">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6 md:mb-0">
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <p class="text-gray-400 mb-2">Phone: 945 236 9499</p>
+                    <p class="text-gray-400">Email: info@ziastrings.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 Zia Strings. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
