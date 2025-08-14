@@ -1,27 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
-<head data-include="partials/seo.html"></head>
-<body class="bg-gray-50">
-    <div data-include="partials/header.html"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium quality thobes for men - Traditional Islamic clothing with modern comfort. Shop our exclusive collection today.">
+    <link rel="canonical" href="https://ziastrings.com" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ziastrings.com">
+    <meta property="og:title" content="Zia Strings - Premium Islamic Clothing">
+    <meta property="og:description" content="Premium quality thobes for men - Traditional Islamic clothing with modern comfort. Shop our exclusive collection today.">
+    <meta property="og:image" content="https://ziastrings.com/images/og-image.jpg">
 
-    <main class="container mx-auto p-6">
-        <section class="text-center py-12">
-            <h1 class="text-4xl font-bold mb-4">Premium Quality Thobes</h1>
-            <p class="mb-6">Traditional craftsmanship meets modern comfort.</p>
-        </section>
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ziastrings.com">
+    <meta property="twitter:title" content="Zia Strings - Premium Islamic Clothing">
+    <meta property="twitter:description" content="Premium quality thobes for men - Traditional Islamic clothing with modern comfort. Shop our exclusive collection today.">
+    <meta property="twitter:image" content="https://ziastrings.com/images/og-image.jpg">
 
-        <section>
-            <h2 class="text-2xl font-semibold mb-4">Featured Products</h2>
-            <div id="featured-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-        </section>
-    </main>
+    <title>Zia Strings - Premium Islamic Clothing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatbotButton = document.getElementById('chatbot-button');
+            const chatbotWindow = document.getElementById('chatbot-window');
+            const chatbotClose = document.getElementById('chatbot-close');
+            const chatbotInput = document.getElementById('chatbot-input');
+            const chatbotSend = document.getElementById('chatbot-send');
+            const chatbotMessages = document.getElementById('chatbot-messages');
 
-    <div data-include="partials/footer.html"></div>
-    <div data-include="partials/chatbot.html"></div>
+            // Product knowledge database
+            const productDB = {
+                'price': 'Our thobes range from $89.99 to $139.99 depending on style and fabric.',
+                'fabric': 'We use premium 100% cotton for most thobes, with Egyptian cotton for our luxury line.',
+                'shipping': 'We ship worldwide within 7-14 business days. Free shipping on orders over $200.',
+                'size': 'See our size chart for measurements. If between sizes, we recommend sizing up.',
+                'return': '30-day returns for unworn items with tags attached. Custom thobes are final sale.',
+                'payment': 'We accept Visa, Mastercard, PayPal, and bank transfers.',
+                'custom': 'We offer custom tailoring - please contact us for details and pricing.'
+            };
 
-    <script src="assets/js/include.js"></script>
-    <script src="assets/js/products.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/chatbot.js"></script>
-</body>
-</html>
+            // Common questions regex patterns
+            const patterns = [
+                { regex: /price|cost|how much/, response: productDB['price'] },
+                { regex: /fabric|material|what.*made/, response: productDB['fabric'] },
+                { regex: /ship|deliver|arrive/, response: productDB['shipping'] },
+                { regex: /size|measure|fit/, response: productDB['size'] },
+                { regex: /return|refund|exchange/, response: productDB['return'] },
+                { regex: /pay|method|card/, response: productDB['payment'] },
+                { regex: /custom|tailor|alter/, response: productDB['custom'] }
+            ];
+
+            chatbotButton.addEventListener('click', () => {
+                chatbotWindow.classList.toggle('hidden');
+            });
+
+            chatbotClose.addEventListener('click', () => {
+                chatbotWindow.classList.add('hidden');
+            });
+
+            function addMessage(text, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `mb-4 text-sm ${isUser ? 'text-right' : ''}`;
+                messageDiv.innerHTML = 
+                    `<p class="${isUser ? 'bg-amber-100' : 'bg-gray-100'} p-3 rounded-lg">${text}</p>`;
+                chatbotMessages.appendChild(messageDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+
+            function processQuestion(question) {
+                question = question.toLowerCase();
+                let response = "I'm sorry, I didn't understand your question. Can you try rephrasing it?";
+
+                // Check for exact matches
+                if (productDB[question]) {
+                    response = productDB[question];
+                } 
+                // Check against patterns
+                else {
+                    for (const {regex, response: resp} of patterns) {
+                        if (regex.test(question)) {
+                            response = resp;
+                            break;
+                        }
+                    }
+                }
+
+                return response;
+            }
+
+            chatbotSend.addEventListener('click', () => {
+                const question = chatbotInput.value.trim();
+                if (question) {
+                    addMessage(question, true);
+                    chatbotInput.value = '';
+                    
+                    setTimeout(() => {
+                        const response = processQuestion(question);
+                        addMessage(response);
+                    }, 500);
+                }
+            });
+
+            chatbotInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    chatbotSend.click();
+                }
+            });
+        });
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Zia Strings",
+      "description": "Premium quality thobes for men - Traditional Islamic clothing with modern comfort.",
+      "url": "https://ziastrings.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://ziastrings.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .thobe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .active-tab {
+            border-bottom: 3px solid #8B5A2B;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <a href="#" class="flex items-center py-4 px-2">
+                            <span class="font-semibold text-gray-900 text-2xl">Zia Strings</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#" class="py-4 px-2 text-gray-900 border-b-4 border-brown-500 font-semibold active-tab">Home</a>
+                    <a href="#products" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">Products</a>
+                    <a href="#about" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">About</a>
+                    <a href="#contact" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">Contact</a>
+                    <a href="#" class="py-2 px-4 bg-amber-800 text-white rounded hover:bg-amber-900 transition duration-300 flex items-center">
+                        <i class="fas fa-shopping-cart mr-2"></i> Cart
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="hidden mobile-menu">
+            <ul>
+                <li><a href="#" class="block text-sm px-2 py-4 text-white bg-amber-800 font-semibold">Home</a></li>
+                <li><a href="#products" class="block text-sm px-2 py-4 hover:bg-amber-800 hover:text-white transition duration-300">Products</a></li>
+                <li><a href="#about" class="block text-sm px-2 py-4 hover:bg-amber-800 hover:text-white transition duration-300">About</a></li>
+                <li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-amber-800 hover:text-white transition duration-300">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl font-bold mb-6">Premium Quality Thobes</h1>
+            <p class="text-xl mb-8">Experience the perfect blend of tradition and comfort with our handcrafted thobes</p>
+            <a href="#products" class="bg-amber-800 hover:bg-amber-900 text-white font-bold py-3 px-6 rounded-full transition duration-300">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="py-12 bg-white" id="products">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Featured Thobes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="thobe-card bg-white rounded-lg overflow-hidden shadow-md transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1595341595379-cf0f2f0dbf49?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Classic White Thobe" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Classic White Thobe</h3>
+                        <p class="text-gray-600 mt-2">Premium cotton fabric with elegant embroidery</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-bold text-amber-800">$89.99</span>
+                            <button class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-2 rounded transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="thobe-card bg-white rounded-lg overflow-hidden shadow-md transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Embroidered Black Thobe" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Embroidered Black Thobe</h3>
+                        <p class="text-gray-600 mt-2">Luxurious black fabric with gold thread detailing</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-bold text-amber-800">$109.99</span>
+                            <button class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-2 rounded transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="thobe-card bg-white rounded-lg overflow-hidden shadow-md transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Premium Cream Thobe" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Premium Cream Thobe</h3>
+                        <p class="text-gray-600 mt-2">Soft cream fabric with minimalistic design</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-bold text-amber-800">$99.99</span>
+                            <button class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-2 rounded transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="#all-products" class="inline-block border-2 border-amber-800 text-amber-800 font-semibold py-2 px-6 rounded-full hover:bg-amber-800 hover:text-white transition duration-300">View All</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-12 bg-gray-100" id="about">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">About Zia Strings</h2>
+            
+            <div class="flex flex-col md:flex-row items-center mb-12">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Story</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Founded in 2010, Zia Strings began with a simple mission: to provide high-quality, comfortable thobes that combine traditional craftsmanship with modern comfort. 
+                        Our founder, Ahmed Al-Mansoori, noticed a gap in the market for premium thobes that didn't compromise on quality or comfort.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mt-4">
+                        Today, we source only the finest fabrics and work with skilled artisans to create thobes that are perfect for everyday wear, special occasions, and everything in between.
+                    </p>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our Workshop" class="rounded-lg shadow-lg">
+                </div>
+            </div>
+            
+            <div class="mt-12">
+                <h3 class="text-2xl font-semibold text-center text-gray-800 mb-8">Frequently Asked Questions</h3>
+                
+                <div class="max-w-3xl mx-auto">
+                    <div class="bg-white rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition duration-300 flex justify-between items-center">
+                            <span class="font-medium">What fabrics do you use for your thobes?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer p-4 hidden">
+                            <p class="text-gray-600">
+                                We use premium 100% cotton for most of our thobes, which offers excellent breathability and comfort. For our luxury line, we use Egyptian cotton and high-quality blends.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition duration-300 flex justify-between items-center">
+                            <span class="font-medium">How do I determine my size?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer p-4 hidden">
+                            <p class="text-gray-600">
+                                We provide a detailed size chart for each product. Generally, our sizes range from Small to 3XL. If you're between sizes or unsure, we recommend going with the larger size.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition duration-300 flex justify-between items-center">
+                            <span class="font-medium">What is your return policy?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer p-4 hidden">
+                            <p class="text-gray-600">
+                                We offer a 30-day return policy for unworn, unwashed items with original tags attached. Custom-made thobes are final sale unless there is a manufacturing defect. Please contact us for more details.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md mb-4 overflow-hidden">
+                        <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 transition duration-300 flex justify-between items-center">
+                            <span class="font-medium">Do you ship internationally?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer p-4 hidden">
+                            <p class="text-gray-600">
+                                Yes, we ship worldwide. Shipping costs and delivery times vary by destination. Most international orders arrive within 7-14 business days after processing. Customs fees may apply depending on your country.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Products Section -->
+    <section class="py-12 bg-white" id="all-products">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Thobe Collection</h2>
+            
+            <div class="flex justify-center mb-8">
+                <div class="inline-flex rounded-md shadow-sm">
+                    <button class="px-4 py-2 text-sm font-medium rounded-l-lg bg-amber-800 text-white">All</button>
+                    <button class="px-4 py-2 text-sm font-medium bg-white text-gray-700 hover:bg-gray-50">Classic</button>
+                    <button class="px-4 py-2 text-sm font-medium bg-white text-gray-700 hover:bg-gray-50">Premium</button>
+                    <button class="px-4 py-2 text-sm font-medium rounded-r-lg bg-white text-gray-700 hover:bg-gray-50">Luxury</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="thobe-card bg-white rounded-lg overflow-hidden shadow-md transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1595341595379-cf0f2f0dbf49?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Classic White Thobe" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Classic White Thobe</h3>
+                        <p class="text-gray-600 mt-2">Premium cotton fabric with elegant embroidery</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-bold text-amber-800">$89.99</span>
+                            <button class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-2 rounded transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="thobe-card bg-white rounded-lg overflow-hidden shadow-md transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Embroidered Black Thobe" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Embroidered Black Thobe</h3>
+                        <p class="text-gray-600 mt-2">Luxurious black fabric with gold thread detailing</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-bold text-amber-800">$109.99</span>
+                            <button class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-2 rounded transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="thobe-card bg-white rounded-lg overflow-hidden shadow-md transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Premium Cream Thobe" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Premium Cream Thobe</h3>
+                        <p class="text-gray-600 mt-2">Soft cream fabric with minimalistic design</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-bold text-amber-800">$99.99</span>
+                            <button class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-2 rounded transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="thobe-card bg-white rounded-lg overflow-hidden shadow-md transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1595341595379-cf0f2f0dbf49?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Royal Blue Thobe" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Royal Blue Thobe</h3>
+                        <p class="text-gray-600 mt-2">Deep blue with silver embroidery accents</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-bold text-amber-800">$119.99</span>
+                            <button class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-2 rounded transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="thobe-card bg-white rounded-lg overflow-hidden shadow-md transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Light Gray Thobe" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Light Gray Thobe</h3>
+                        <p class="text-gray-600 mt-2">Modern gray with subtle pattern details</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-bold text-amber-800">$94.99</span>
+                            <button class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-2 rounded transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="thobe-card bg-white rounded-lg overflow-hidden shadow-md transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1595341595379-cf0f2f0dbf49?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Gold Trim Thobe" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Gold Trim Thobe</h3>
+                        <p class="text-gray-600 mt-2">White with extensive gold embroidery</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-bold text-amber-800">$129.99</span>
+                            <button class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-2 rounded transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="thobe-card bg-white rounded-lg overflow-hidden shadow-md transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Olive Green Thobe" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Olive Green Thobe</h3>
+                        <p class="text-gray-600 mt-2">Unique olive color with brown accents</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-bold text-amber-800">$104.99</span>
+                            <button class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-2 rounded transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="thobe-card bg-white rounded-lg overflow-hidden shadow-md transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1595341595379-cf0f2f0dbf49?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Winter Thobe" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Winter Thobe</h3>
+                        <p class="text-gray-600 mt-2">Heavier fabric for colder months</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xl font-bold text-amber-800">$139.99</span>
+                            <button class="bg-amber-800 hover:bg-amber-900 text-white px-4 py-2 rounded transition duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-12 bg-gray-100" id="contact">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Contact Us</h2>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Get in Touch</h3>
+                    <p class="text-gray-600 mb-6">
+                        Have questions about our products or need assistance with your order? Our customer service team is here to help.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <!-- Removed address -->
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-phone-alt text-amber-800 mr-3"></i>
+                            <span class="text-gray-700">945 236 9499</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-amber-800 mr-3"></i>
+                            <span class="text-gray-700">info@ziastrings.com</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800 mb-3">Business Hours</h4>
+                        <p class="text-gray-600 mb-2">Sunday - Thursday: 9:00 AM - 6:00 PM</p>
+                        <p class="text-gray-600">Friday: Closed</p>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <form class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
+                            <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-800" id="name" type="text" placeholder="Your Name">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+                            <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-800" id="email" type="email" placeholder="Your Email">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="subject">Subject</label>
+                            <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-800" id="subject" type="text" placeholder="Subject">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Message</label>
+                            <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-800" id="message" rows="4" placeholder="Your Message"></textarea>
+                        </div>
+                        <button class="w-full bg-amber-800 hover:bg-amber-900 text-white font-bold py-2 px-4 rounded transition duration-300" type="button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot -->
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
+        <div id="chatbot-button" class="w-16 h-16 bg-amber-800 rounded-full flex items-center justify-center cursor-pointer shadow-lg transition-transform hover:scale-110">
+            <i class="fas fa-robot text-white text-2xl"></i>
+        </div>
+        <div id="chatbot-window" class="hidden absolute bottom-20 right-0 w-80 h-96 bg-white rounded-lg shadow-xl flex flex-col border border-gray-200">
+            <div class="bg-amber-800 text-white p-4 rounded-t-lg flex justify-between items-center">
+                <h3 class="font-semibold">Zia Strings Assistant</h3>
+                <button id="chatbot-close" class="text-white hover:text-amber-200">✕</button>
+            </div>
+            <div id="chatbot-messages" class="flex-1 p-4 overflow-auto text-gray-800">
+                <div class="mb-4 text-sm">
+                    <p class="bg-gray-100 p-3 rounded-lg">Hello! I'm your Zia Strings assistant. How can I help you today?</p>
+                </div>
+            </div>
+            <div class="p-4 border-t border-gray-200">
+                <input id="chatbot-input" type="text" placeholder="Ask about our products..." class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-amber-800">
+                <button id="chatbot-send" class="mt-2 w-full bg-amber-800 hover:bg-amber-900 text-white py-2 px-4 rounded transition duration-300">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">Zia Strings</h3>
+                    <p class="text-gray-400">Premium quality thobes for the modern Muslim man.</p>
+                </div>
+                
+                <div class="mb-6 md:mb-0">
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li class="mb-2"><a href="#products" class="text-gray-400 hover:text-white transition duration-300">Products</a></li>
+                        <li class="mb-2"><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mb-6 md:mb-0">
+                    <h4 class="text-lg font
+
+
